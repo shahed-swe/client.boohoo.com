@@ -1,0 +1,12 @@
+.main-card {
+    .buy-card {
+        display: none;
+    }
+     :hover {
+        .buy-card {
+            display: block;
+            position: relative;
+            top: -40px;
+        }
+    }
+}
