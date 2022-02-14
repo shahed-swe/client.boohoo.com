@@ -1,1 +1,48 @@
+$laptop1440: 1450px;
+$laptop1441: 2000px;
+$laptop14inchmax: 1220px;
+$laptop14inchmin: 1220px;
+$laptop1030: 1030px;
+$tablet: 770px;
+$smalldevice: 790px;
+// for resonsiveness
+@mixin respond ($breakpoint) {
+    @if $breakpoint==mobile {
+        @media only screen and (max-width: 480px) {
+            @content;
+        }
+    }
+    @if $breakpoint==tablet {
+        @media only screen and (max-width: $tablet) {
+            @content;
+        }
+    }
+    @if $breakpoint==laptopsmall {
+        @media only screen and (max-width: $laptop1030) {
+            @content;
+        }
+    }
+    @if $breakpoint==laptop14inch {
+        @media only screen and (max-width: 1439px) {
+            @content;
+        }
+    }
+    @if $breakpoint==laptopbig {
+        @media only screen and (max-width: $laptop1440) {
+            @content;
+        }
+    }
+    @if $breakpoint==desktopbig {
+        @media only screen and (min-width: $laptop1441) {
+            @content;
+        }
+    }
+    @if $breakpoint==smalldevice {
+        @media only screen and (max-height: $smalldevice) {
+            @content;
+        }
+    }
+}
+
+@import "text.scss";
 @import "~bootstrap/scss/bootstrap";
