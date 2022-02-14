@@ -9,6 +9,7 @@ import PrivateRoute from './components/privateRoute';
 import Home from './pages/home';
 import Product from './pages/products/index';
 import Order from './pages/order/index';
+import ProductShow from './pages/products/show';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/products' component={Product} />
+            <Route path="/product" component={ProductShow}/>
             <PrivateRoute>
               <Route path='/order' component={Order} />
             </PrivateRoute>

@@ -22,7 +22,7 @@ export const NavbarBase = () => {
                             <div className="pt-2">
                                 <Link to={"/"} className="text-decoration-none">
                                     <div className="text-decoration-none">
-                                        <Text className="fs-4 text-dark">EFG Fashion</Text>
+                                        <Text className="fs-22 text-dark ">boohoo</Text>
                                     </div>
                                 </Link>
                             </div>
