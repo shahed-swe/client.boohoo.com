@@ -2,12 +2,14 @@ import React from 'react';
 import Image from '../../assets/img/bam.webp'
 import { Text } from '../text';
 import "./style.scss"
+import { useHistory } from 'react-router-dom';
 
 export const Product = (props) => {
+    const history = useHistory()
     return (
-        <div className='col-lg-3 col-md-6 col-sm-12 mt-3 main-card'>
+        <div className='col-lg-3 col-md-6 col-sm-12 mt-3 main-card' >
             <div class="card border-0" >
-                <img src={Image} class="card-img-top" alt="..." />
+                <img src={Image} class="card-img-top" alt="..." style={{ cursor: "pointer" }} onClick={() => history.push("/product")}/>
                 <div class="card-body">
                     <Text className="fs-12 text-center mb-1">Tricot Bomber Tracksuit With Panels</Text>
                     <div className='text-center'>

@@ -71,7 +71,6 @@ const Index = () => {
                                     <button className='btn btn-secondary shadow-none rounded-0 btn-block col-9 ms-2'>SELECT UK SIZE</button>
                                     <Heart className='ms-2' size={32}/>
                                 </div>
-                                
                             </div>
                         </Container.Column>
                     </Container.Row>
