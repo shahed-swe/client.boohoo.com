@@ -11,6 +11,7 @@ import Product from './pages/products/index';
 import Order from './pages/order/index';
 import ProductShow from './pages/products/show';
 import Cart from './pages/cart/index'
+import Login from './pages/auth/login';
 
 function App() {
   return (
@@ -20,11 +21,17 @@ function App() {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/products' component={Product} />
-            <Route path="/product" component={ProductShow}/>
-            <Route path="/cart" component={Cart}/>
+            <Route path="/product" component={ProductShow} />
+            <Route path="/login" component={Login} />
             <PrivateRoute>
+              <Route path="/cart" component={Cart} />
               <Route path='/order' component={Order} />
             </PrivateRoute>
+            <Route path="*" component={() => {
+              return (
+                <h1>404 Page Not Found</h1>
+              )
+            }} />
           </Switch>
         </ScrollToTop>
       </Router>
