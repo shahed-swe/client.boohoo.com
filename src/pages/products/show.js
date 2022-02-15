@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '../../components/container';
 import { Gallery } from '../../components/imagemagnify';
 import { Text } from '../../components/text';
-
+import { useHistory } from 'react-router-dom';
 // images
 import ImageFirst from '../../assets/take1.jpg'
 import ImageSecond from '../../assets/take2.jpg'
@@ -11,7 +11,7 @@ import { Heart } from 'react-feather';
 import { Layout } from '../../components/layout';
 
 const ProductShow = () => {
-
+    const history = useHistory()
     const images = [
         {
             img: ImageFirst
@@ -60,7 +60,7 @@ const ProductShow = () => {
                                 <div className="col-1">
                                     <input type="text" className='form-control shadow-none rounded-0' defaultValue={1} />
                                 </div>
-                                <button className='btn btn-danger shadow-none rounded-0 btn-block col-9 ms-2'>SELECT UK SIZE</button>
+                                <button className='btn btn-danger shadow-none rounded-0 btn-block col-9 ms-2' onClick={() => history.push("/cart")}>SELECT UK SIZE</button>
                                 <Heart className='ms-2' size={32} />
                             </div>
 
