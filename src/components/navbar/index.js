@@ -43,7 +43,7 @@ export const NavbarBase = () => {
                                         </Link>
                                     </div>
                                     <div className="text-center me-4">
-                                        <Link to="#" className="text-decoration-none">
+                                        <Link to="/cart" className="text-decoration-none">
                                             <ShoppingBag size={28} color="black" />
                                         </Link>
                                     </div>

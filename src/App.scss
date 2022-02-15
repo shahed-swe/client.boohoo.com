@@ -5,7 +5,6 @@ $laptop14inchmin: 1220px;
 $laptop1030: 1030px;
 $tablet: 770px;
 $smalldevice: 790px;
-$primary: black;
 // for resonsiveness
 @mixin respond ($breakpoint) {
     @if $breakpoint==mobile {
@@ -45,5 +44,6 @@ $primary: black;
     }
 }
 
+@import "colors.scss";
 @import "text.scss";
 @import "~bootstrap/scss/bootstrap";
