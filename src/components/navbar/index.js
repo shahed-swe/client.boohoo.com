@@ -23,7 +23,7 @@ export const NavbarBase = () => {
                             <div className="pt-2">
                                 <Link to={"/"} className="text-decoration-none">
                                     <div className="text-decoration-none">
-                                        <Text className="fs-22 text-dark ">boohoo</Text>
+                                        <Text className="fs-22 text-dark ">FASHIONCLUB</Text>
                                     </div>
                                 </Link>
                             </div>
@@ -33,20 +33,20 @@ export const NavbarBase = () => {
                                 <div className="d-flex justify-content-end">
 
                                     <div className="text-center me-4">
-                                        <NavDropdown title={<User size={28} color="black" />} id="navbarScrollingDropdown">
+                                        <NavDropdown title={<User size={22} color="black" />} id="navbarScrollingDropdown">
                                             {token ? <NavDropdown.Item onClick={() => {localStorage.removeItem("token"); history.push("/login")}}>logout</NavDropdown.Item> : <NavDropdown.Item href="/login">Login</NavDropdown.Item>}
                                             
                                         </NavDropdown>
                                     </div>
 
-                                    <div className="text-center me-4">
+                                    <div className="text-center me-4 pt-2">
                                         <Link to="#" className="text-decoration-none">
-                                            <Heart size={28} color="black" />
+                                            <Heart size={22} color="black" />
                                         </Link>
                                     </div>
-                                    <div className="text-center me-4">
+                                    <div className="text-center me-4 pt-2">
                                         <Link to="/cart" className="text-decoration-none">
-                                            <ShoppingBag size={28} color="black" />
+                                            <ShoppingBag size={22} color="black" />
                                         </Link>
                                     </div>
                                 </div>
