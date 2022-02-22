@@ -9,3 +9,28 @@
         }
     }
 }
+
+.color {
+    border-color: #f7bde2 !important;
+}
+
+.selected-color {
+    border-color: #ee25a4 !important;
+}
+
+.bag {
+    background-color: white;
+    border: 1px solid #ee25a4 !important;
+    color: black;
+}
+
+.bag:hover {
+    background-color: #ee25a4;
+    color: white;
+}
+
+.purchase {
+    background-color: #ee25a4;
+    border: 1px solid #ee25a4;
+    color: white;
+}

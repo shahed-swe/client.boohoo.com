@@ -5,17 +5,28 @@ import { PrimaryModal } from '../../components/modals';
 import { Product } from '../../components/product/index'
 import { Single } from '../../components/product/single';
 import { Requests } from "../../utils/API/index"
+import { Loader } from '../../components/loading';
 
 const Index = () => {
     const [productshow, setProductShow] = useState({ value: null, show: false })
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const fetchData = useCallback(async () => {
-        const response = await Requests.Product.Index()
-        console.log(response)
-        if (response.status === 200) {
-            setData(response.data)
+        try {
+            const response = await Requests.Product.Index()
+            console.log(response)
+            if (response.status === 200) {
+                setData(response.data)
+                setLoading(false)
+            }
+        } catch (error) {
+            if(error){
+                console.log(error)
+            }
+            setLoading(false)
         }
+        
     }, [])
 
     // fetch product
@@ -25,6 +36,7 @@ const Index = () => {
 
     return (
         <div>
+            {loading ? <Loader/> : 
             <Layout>
                 <Container.Simple>
                     <Container.Row>
@@ -36,14 +48,15 @@ const Index = () => {
                     </Container.Row>
 
                 </Container.Simple>
-            </Layout>
+            </Layout>}
+            {productshow.value && productshow.show ? 
             <PrimaryModal
                 size="xl"
                 show={productshow.show}
                 onHide={() => setProductShow({ show: !productshow.show })}
             >
-                <Single />
-            </PrimaryModal>
+                <Single product={productshow.value}/>
+            </PrimaryModal> : null}
         </div>
     );
 };
