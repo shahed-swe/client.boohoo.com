@@ -8,7 +8,7 @@ const Index = async () => {
             'Accept': 'application/json'
         }
     }
-    return await Axios.get(`${API}/categories`, config)
+    return await Axios.get(`${API}/products/categories`, config)
 }
 
 

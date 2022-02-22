@@ -15,7 +15,6 @@ const Index = () => {
     const fetchData = useCallback(async () => {
         try {
             const response = await Requests.Product.Index()
-            console.log(response)
             if (response.status === 200) {
                 setData(response.data)
                 setLoading(false)

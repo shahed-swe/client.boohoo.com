@@ -9,7 +9,7 @@ export const Product = (props) => {
     return (
         <div className='col-lg-3 col-md-6 col-sm-12 mt-3 main-card' >
             <div className="card border-0" >
-                <img src={image} className="card-img-top" alt="..." height={310} width={200} style={{ cursor: "pointer" }} onClick={() => history.push("/product")}/>
+                <img src={image} className="card-img-top" alt="..." height={310} width={200} style={{ cursor: "pointer" }} onClick={() => history.push(`/product/${props.item.id}`)}/>
                 <div className="card-body">
                     <Text className="fs-12 text-center mb-1">{title.slice(0,20)}</Text>
                     <div className='text-center'>

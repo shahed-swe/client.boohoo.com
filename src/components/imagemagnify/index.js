@@ -35,9 +35,9 @@ export const Gallery = (props) => {
                     }} />
                 </Container.Column>
                 {/* Small images container */}
-                <Container.Column className="col-lg-12">
+                <Container.Column className="col-lg-12 ms-5">
 
-                    <Container.Row className="ms-4 mt-2">
+                    <Container.Row className="ms-5 mt-2">
                         {props.image && props.image.length ?
                             props.image.map((item, i) =>
                                 <div
