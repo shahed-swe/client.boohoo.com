@@ -53,8 +53,8 @@ export const Single = (props) => {
                         </Container.Column>
                         <Container.Column className="col-lg-6">
                             <div className='ms-5'>
-                                <Text className="fs-26">{productDetail.title}</Text>
-                                <Text className="fs-12 text-muted">{productDetail.category}</Text>
+                                <Text className="fs-12 text-muted text-capitalize">{productDetail.category}</Text>
+                                <Text className="fs-26 fw-bold">{productDetail.title}</Text>
                                 <Text className="fs-13 text-danger">{productDetail.description}</Text>
                                 <span className="fs-26 fw-bold">£{productDetail.price}</span>
                                 <div className='d-flex justify-content-between'>
