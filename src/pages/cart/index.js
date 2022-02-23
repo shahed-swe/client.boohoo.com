@@ -3,10 +3,10 @@ import { Container } from '../../components/container';
 import { Layout } from '../../components/layout';
 import { Text } from "../../components/text/index"
 // images
-import { Edit2, Heart } from 'react-feather';
+import { Edit2, Heart, X } from 'react-feather';
 import { Requests } from '../../utils/API/index';
 import ProductCategories from '../../components/product/category';
-import { getDatabaseCart } from '../../utils/utilities';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utils/utilities';
 
 const Index = () => {
     const [categories, setCategories] = useState([])
@@ -45,6 +45,12 @@ const Index = () => {
     useEffect(() => {
         getCart()
     }, [getCart])
+
+
+    const handleRemove = (item) => {
+        removeFromDatabaseCart(item)
+        getCart()
+    }
 
     return (
         <div>
@@ -94,10 +100,10 @@ const Index = () => {
                                                             <Text className="fs-12 text-muted mb-1 text-capitalize">{item.category}</Text>
                                                             <Text className="fs-12 text-dark mb-0">UK Size: M</Text>
                                                             <div className='d-flex justify-content-start'>
-                                                                <Text className="fs-12">
-                                                                    <Edit2 size={12} className="me-1" />
-                                                                    Edit Details
-                                                                </Text>
+                                                                <span className="fs-12" style={{ cursor: "pointer" }} onClick={() => handleRemove(key)}>
+                                                                    <X size={12} className="me-1" />
+                                                                    Remove
+                                                                </span>
                                                                 <Text className="fs-12 ms-3">
                                                                     <Heart size={12} className="me-1" />
                                                                     Add To Wishlist
