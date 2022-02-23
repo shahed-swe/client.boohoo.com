@@ -42,7 +42,7 @@ export const Footer = () => {
                 </Container.Column>
                 <Container.Column className="col-lg-4 col-md-6">
                     <Text className="fw-16 fw-bolder">ABOUT US & MORE</Text>
-                    <Text className="fs-13 mb-2">About boohoo</Text>
+                    <Text className="fs-13 mb-2">About FashionClub</Text>
                     <Text className="fs-13 mb-2 fw-bold text-white">Investor Relations</Text>
                     <Text className="fs-13 mb-2">Environment & Social Responsibility</Text>
                     <Text className="fs-13 mb-2">BCI Membership</Text>
