@@ -6,6 +6,7 @@ import { Requests } from '../../utils/API/index'
 import { useHistory } from 'react-router-dom'
 import { Loader } from '../loading'
 import { Star } from 'react-feather'
+import { ToggleGroup, ToggleGroupItem } from '../toggle/index';
 
 export const Single = (props) => {
     const history = useHistory()
@@ -62,20 +63,25 @@ export const Single = (props) => {
                                 <Text className="fs-14 fw-bold">AVAILABILITY:
                                     <span className='fw-normal'> Select Styles for Availability</span>
                                 </Text>
-                                <div className='d-flex justify-content-start'>
-                                    <div className='border p-2 ps-3 pe-3 color'>
-                                        <Text className="m-0">S</Text>
-                                    </div>
-                                    <div className='border p-2 ps-3 pe-3 ms-3 selected-color'>
-                                        <Text className="m-0">M</Text>
-                                    </div>
-                                    <div className='border p-2 ps-3 pe-3 ms-3 color'>
-                                        <Text className="m-0">L</Text>
-                                    </div>
-                                    <div className='border p-2 ps-3 pe-3 ms-3 color'>
-                                        <Text className="m-0">XL</Text>
-                                    </div>
-                                </div>
+                                <ToggleGroup
+                                    css={{ marginTop: '$5' }}
+                                    type='single'
+                                    defaultValue='M'
+                                    aria-label='Product Size'
+                                >
+                                    <ToggleGroupItem outlined value='S' aria-label='S'>
+                                        S
+                                    </ToggleGroupItem>
+                                    <ToggleGroupItem outlined value='M' aria-label='M'>
+                                        M
+                                    </ToggleGroupItem>
+                                    <ToggleGroupItem outlined value='L' aria-label='L'>
+                                        L
+                                    </ToggleGroupItem>
+                                    <ToggleGroupItem outlined value='XL' aria-label='XL'>
+                                        XL
+                                    </ToggleGroupItem>
+                                </ToggleGroup>
                                 <div className='buttons mt-3'>
                                     <button className='ps-3 pe-3 pt-2 pb-2 border bag' onClick={() => props.handleBusket(productDetail, 1)}>Add To Bag</button>
                                     <button className='ps-3 pe-3 pt-2 pb-2 ms-4 border purchase' onClick={() => {props.handleBusket(productDetail, 1); history.push("/cart")}}>Purchase Now</button>
