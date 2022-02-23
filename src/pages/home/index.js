@@ -70,7 +70,7 @@ const Index = () => {
                         </div>
                         {data && data.map((item, index) => {
                             return (
-                                <ProductItem item={item} key={index} />
+                                <ProductItem handleBusket={handleBusket}  item={item} key={index} />
                             )
                         })}
                     </Container.Simple>

@@ -19,7 +19,7 @@ export const ProductItem = (props) => {
                             <Text className="mb-0 fs-14">Product Reviews</Text>
                             <Text className="fs-14 ms-4"><Star size={15} className='text-magenta' /><Star size={15} className='text-magenta' /><Star size={15} className='text-magenta' /><Star size={15} className='text-magenta' /><Star size={15} className='text-magenta' /> {`${item.rating.rate}(${item.rating.count})`}</Text>
                         </div>
-                        <button className='ps-3 pe-3 pt-2 pb-2 border bag'>Add To Bag</button>
+                        <button className='ps-3 pe-3 pt-2 pb-2 border bag' onClick={() => props.handleBusket(item, 1)}>Add To Bag</button>
                     </div>
                 </div>
             </div>

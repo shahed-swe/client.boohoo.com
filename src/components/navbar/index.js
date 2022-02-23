@@ -152,7 +152,7 @@ const NavbarBase = () => {
                                         <NavItemIcon as={IoHeartOutline} />
                                     </NavItem>
                                 </NavItemContainer>
-                                <NavItemContainer css={{ px: '1rem' }}>
+                                <NavItemContainer css={{ px: '1rem' }} onClick={() => history.push("/cart")}>
                                     <NavItem>
                                         <NavItemIcon as={IoBagOutline} />
                                     </NavItem>

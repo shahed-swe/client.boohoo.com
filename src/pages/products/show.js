@@ -133,7 +133,7 @@ const ProductShow = () => {
                                 </div>
                                 {data && data.map((item, index) => {
                                     return (
-                                        <ProductItem productDetail={productDetail} item={item} key={index} />
+                                        <ProductItem handleBusket={handleBusket} productDetail={productDetail} item={item} key={index} />
                                     )
                                 })}
                             </Container.Column>
