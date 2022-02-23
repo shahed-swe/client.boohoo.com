@@ -3,7 +3,7 @@ import { Container } from '../../components/container';
 import { Layout } from '../../components/layout';
 import { Text } from "../../components/text/index"
 // images
-import { Edit2, Heart, X } from 'react-feather';
+import { Heart, X } from 'react-feather';
 import { Requests } from '../../utils/API/index';
 import ProductCategories from '../../components/product/category';
 import { getDatabaseCart, removeFromDatabaseCart } from '../../utils/utilities';
