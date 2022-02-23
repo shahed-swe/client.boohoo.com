@@ -1,11 +1,50 @@
+import { useState, useCallback, useEffect } from 'react'
 import { Container } from '../../components/container';
 import { Layout } from '../../components/layout';
 import { Text } from "../../components/text/index"
 // images
 import ImageFirst from '../../assets/take1.jpg'
 import { Edit2, Heart } from 'react-feather';
+import { Requests } from '../../utils/API';
+import CategoryImage from "../../assets/cat.jpg"
+import { getDatabaseCart } from '../../utils/utilities';
 
 const Index = () => {
+    const [categories, setCategories] = useState([])
+    const [price, setPrice] = useState(0)
+    const [cartlen, setCartlen] = useState(0)
+    // for fetching category
+    const fetchCategory = useCallback(async () => {
+        try {
+            const response = await Requests.Categories.Index()
+            setCategories(response.data)
+        } catch (error) {
+            if (error) {
+                console.log(error)
+            }
+        }
+
+    }, [])
+
+    useEffect(() => {
+        fetchCategory()
+    }, [fetchCategory])
+
+    const getCart = useCallback(() => {
+        let price = 0;
+        Object.keys(getDatabaseCart()).map((key, index) => {
+            const items = JSON.parse(key)
+            const val = Object.values(getDatabaseCart())[index]
+            price += items.price * val
+        })
+        setPrice(price)
+        setCartlen(Object.keys(getDatabaseCart()).length)
+    }, [])
+
+    // price calculation
+    useEffect(() => {
+        getCart()
+    }, [getCart])
 
     return (
         <div>
@@ -20,7 +59,7 @@ const Index = () => {
                         </Container.Column>
                         <Container.Column className="mt-2 ">
                             <div className='p-2' style={{ backgroundColor: "#ece0d2" }}>
-                                <Text className="fs-20 m-0">BOOHOO PREMIER - £12.99 | UNLIMITED NEXT DAY DELIVERY FOR A YEAR!</Text>
+                                <Text className="fs-20 m-0">FASHIONCLUB PREMIER - £12.99 | UNLIMITED NEXT DAY DELIVERY FOR A YEAR!</Text>
                             </div>
                         </Container.Column>
                         <Container.Column className="mt-2" >
@@ -42,18 +81,16 @@ const Index = () => {
                         <Container.Column>
                             <div className="ps-2 pe-2 mt-3">
                                 <Container.Row>
-                                    {new Array(3).fill().map((_, index) => {
+                                    {Object.keys(getDatabaseCart()).map((key, index) => {
+                                        const item = JSON.parse(key)
                                         return (
                                             <>
                                                 <Container.Column className="col-lg-6 mt-2">
                                                     <div className='d-flex justify-content-start'>
-                                                        <img src={ImageFirst} alt="" height={155} width={95} />
+                                                        <img src={item.image} alt="" height={155} width={115} className="me-3" />
                                                         <div className='ms-2'>
-                                                            <Text className="fs-14 fw-bolder mb-0">
-                                                                Oversized Quilted Check Curved Hem Overshirt</Text>
-                                                            <Text className="fs-12 text-muted mb-1">Product code: AMM15021-103-56</Text>
-                                                            <Text className="fs-12 text-danger">30% OFF MENSWEAR!*</Text>
-                                                            <Text className="fs-12 text-dark">Colour: Beige</Text>
+                                                            <Text className="fs-14 fw-bolder mb-0">{item.title}</Text>
+                                                            <Text className="fs-12 text-muted mb-1 text-capitalize">{item.category}</Text>
                                                             <Text className="fs-12 text-dark mb-0">UK Size: M</Text>
                                                             <div className='d-flex justify-content-start'>
                                                                 <Text className="fs-12">
@@ -76,18 +113,50 @@ const Index = () => {
                                                         </div>
 
                                                         {/* <Text className="text-dark">£24.50</Text> */}
-                                                        <Text className="text-dark">£24.50</Text>
+                                                        <Text className="text-dark">£{Object.values(getDatabaseCart())[index] * item.price}</Text>
                                                     </div>
                                                 </Container.Column>
                                             </>
                                         )
                                     })}
+                                    
+                                    <Container.Column className="mt-2">
+                                        <hr />
+                                        <div className='d-flex justify-content-end'>
+                                            <Text className="me-3">Total Price</Text>
+                                            <Text>£{price}</Text>
+                                        </div>
+                                    </Container.Column>
 
                                 </Container.Row>
                             </div>
                         </Container.Column>
                     </Container.Row>
 
+                </Container.Simple>
+                <Container.Simple className="mt-5">
+                    <Container.Row>
+                        <Container.Column>
+                            <div className="d-flex justify-content-between">
+                                <Text className="fs-22 fw-bolder">Shop By categories</Text>
+                                <button className="bag ps-3 pe-3 pt-1 pb-1">View all</button>
+                            </div>
+                            <Container.Row className="mt-1">
+                                {categories && categories.map((item, index) => {
+                                    return (
+                                        <Container.Column className="col-lg-3 m-0 p-0 prodhover">
+                                            <div className="card text-white border-0 p-3">
+                                                <img src={CategoryImage} className="card-img" alt="..." height={290} width={120} />
+                                                <div className="card-img-overlay text-hide p-3">
+                                                    <Text className="fw-bolder fs-26 text-center mt-5 pt-5 text-capitalize">{item}</Text>
+                                                </div>
+                                            </div>
+                                        </Container.Column>
+                                    )
+                                })}
+                            </Container.Row>
+                        </Container.Column>
+                    </Container.Row>
                 </Container.Simple>
             </Layout>
         </div>

@@ -6,11 +6,13 @@ import { Product } from '../../components/product/index'
 import { Single } from '../../components/product/single';
 import { Requests } from "../../utils/API/index"
 import { Loader } from '../../components/loading';
+import { addToDatabaseCart } from '../../utils/utilities';
 
 const Index = () => {
     const [productshow, setProductShow] = useState({ value: null, show: false })
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [cart, setCart] = useState([])
 
     const fetchData = useCallback(async () => {
         try {
@@ -33,6 +35,28 @@ const Index = () => {
         fetchData()
     }, [fetchData])
 
+
+    // handle cart items
+    const handleBusket = (product, count) => {
+
+        console.log(product)
+        const toBeAddedKey = product.id;
+        const sameProduct = cart.length > 0 && cart.find(productItem => productItem.id === toBeAddedKey);
+        let newCart;
+
+        if (sameProduct) {
+            const others = cart.filter(productItem => productItem.id !== toBeAddedKey);
+            newCart = [...others, sameProduct];
+        }
+        else {
+            newCart = [...cart, product]
+        }
+
+        addToDatabaseCart(JSON.stringify(product), count);
+
+        setCart(newCart);
+    }
+
     return (
         <div>
             {loading ? <Loader/> : 
@@ -54,7 +78,7 @@ const Index = () => {
                 show={productshow.show}
                 onHide={() => setProductShow({ show: !productshow.show })}
             >
-                <Single product={productshow.value}/>
+                <Single handleBusket={handleBusket} product={productshow.value}/>
             </PrimaryModal> : null}
         </div>
     );

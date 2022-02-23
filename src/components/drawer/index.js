@@ -1,4 +1,3 @@
-
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { X } from 'react-feather'
 import { Text } from '../text'

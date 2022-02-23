@@ -25,8 +25,8 @@ function App() {
             <Route path="/product/:id" component={ProductShow} />
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Register} />
+            <Route path="/cart" component={Cart} />
             <PrivateRoute>
-              <Route path="/cart" component={Cart} />
               <Route path='/order' component={Order} />
             </PrivateRoute>
             <Route path="*" component={() => {

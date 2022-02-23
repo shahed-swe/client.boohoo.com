@@ -17,7 +17,7 @@ export const Product = (props) => {
                         <span className="fs-14 fw-bolder text-center">€{price} </span>
                     </div>
                 </div>
-                <button className="btn btn-primary shadow-none ms-4 me-4 buy-card rounded-0" onClick={() => props.setProductShow({value:props.item,show: true})}>Quick buy</button>
+                <button className="btn btn-primary shadow-none ms-4 me-4 buy-card rounded-0" onClick={() => { props.setProductShow({ value: props.item, show: true })}}>Quick buy</button>
             </div>
         </div>
     );

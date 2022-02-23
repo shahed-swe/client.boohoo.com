@@ -9,6 +9,7 @@ import { ProductItem } from '../../components/product/item';
 import { Single } from '../../components/product/single';
 import "./style.scss"
 import CategoryImage from "../../assets/cat.jpg"
+import { addToDatabaseCart } from '../../utils/utilities';
 
 const ProductShow = () => {
 
@@ -17,6 +18,7 @@ const ProductShow = () => {
     const [data, setData] = useState([])
     const params = useParams()
     const [categories, setCategories] = useState([])
+    const [cart, setCart] = useState([])
 
     // for single product fetch
     const fetchProduct = useCallback(async (id) => {
@@ -81,6 +83,27 @@ const ProductShow = () => {
         fetchCategory()
     }, [fetchCategory])
 
+    // handle cart items
+    const handleBusket = (product, count) => {
+
+        console.log(product)
+        const toBeAddedKey = product.id;
+        const sameProduct = cart.length > 0 && cart.find(productItem => productItem.id === toBeAddedKey);
+        let newCart;
+
+        if (sameProduct) {
+            const others = cart.filter(productItem => productItem.id !== toBeAddedKey);
+            newCart = [...others, sameProduct];
+        }
+        else {
+            newCart = [...cart, product]
+        }
+
+        addToDatabaseCart(JSON.stringify(product), count);
+
+        setCart(newCart);
+    }
+
     return (
         <>
             {loading ? <Loader /> :
@@ -94,7 +117,7 @@ const ProductShow = () => {
                                 <li class="breadcrumb-item active text-capitalize" aria-current="page">{productDetail.category}</li>
                             </ol>
                         </nav>
-                        <Single product={productDetail} />
+                        <Single product={productDetail} handleBusket={handleBusket}/>
                     </Container.Simple>
                     <Container.Simple>
                         <Container.Column className="mt-5 mb-5">

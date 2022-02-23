@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { Heart, Menu, Search, ShoppingBag, User } from "react-feather"
+import { Heart, Search, ShoppingBag, User, Award, ChevronRight, Menu, PenTool, Printer, Scissors, Unlock } from "react-feather"
 import { Text } from "../text"
 import { Container } from '../container'
 import { GrayButton } from "../button"
 import { Link } from "react-router-dom"
 import { NavDropdown } from 'react-bootstrap'
 import { useHistory } from "react-router-dom"
+import { Drawer } from "../drawer"
 import "./style.scss"
 // Base navbar
 export const NavbarBase = () => {
@@ -67,6 +68,62 @@ export const NavbarBase = () => {
                     </Container.Column>
                 </Container.Row>
             </Container.Simple>
+            {/* Mobile drawer */}
+            <Drawer
+                show={show}
+                width={280}
+                placement="start"
+                onHide={() => setShow(false)}
+            >
+                <div className="drawer-container">
+
+                    <Link to={"/cart"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
+                        <div className="d-flex">
+                            <div className="pt-1 pe-3">
+                                <ShoppingBag size={20} className="text-muted" />
+                            </div>
+                            <div>
+                                <Text className="text-dark fw-bold fs-13 mb-0">Cart</Text>
+                                <Text className="text-muted fw-thin fs-12 mb-0">See What You Got</Text>
+                            </div>
+                            <div className="ms-auto pt-10">
+                                <ChevronRight className="text-dark float-end" size={16} />
+                            </div>
+                        </div>
+                    </Link>
+
+
+                    <Link to={"/login"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
+                        <div className="d-flex">
+                            <div className="pt-1 pe-3">
+                                <Unlock size={20} className="text-muted" />
+                            </div>
+                            <div>
+                                <Text className="text-dark fw-bold fs-13 mb-0">Login</Text>
+                                <Text className="text-muted fw-thin fs-12 mb-0">Access your account</Text>
+                            </div>
+                            <div className="ms-auto pt-10">
+                                <ChevronRight className="text-dark float-end" size={16} />
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to={"/registration"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
+                        <div className="d-flex">
+                            <div className="pt-1 pe-3">
+                                <User size={20} className="text-muted" />
+                            </div>
+                            <div>
+                                <Text className="text-dark fw-bold fs-13 mb-0">Signup</Text>
+                                <Text className="text-muted fw-thin fs-12 mb-0">Create an account</Text>
+                            </div>
+                            <div className="ms-auto pt-10">
+                                <ChevronRight className="text-dark float-end" size={16} />
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </Drawer>
         </div>
     )
 }
