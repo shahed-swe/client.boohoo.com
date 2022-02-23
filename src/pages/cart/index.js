@@ -5,7 +5,7 @@ import { Text } from "../../components/text/index"
 // images
 import { Edit2, Heart } from 'react-feather';
 import { Requests } from '../../utils/API/index';
-import CategoryImage from "../../assets/cat.jpg"
+import ProductCategories from '../../components/product/category';
 import { getDatabaseCart } from '../../utils/utilities';
 
 const Index = () => {
@@ -141,29 +141,8 @@ const Index = () => {
                     
 
                 </Container.Simple>
-                <Container.Simple className="mt-5">
-                    <Container.Row>
-                        <Container.Column>
-                            <div className="d-flex justify-content-between">
-                                <Text className="fs-22 fw-bolder">Shop By categories</Text>
-                                <button className="bag ps-3 pe-3 pt-1 pb-1">View all</button>
-                            </div>
-                            <Container.Row className="mt-1">
-                                {categories && categories.map((item, index) => {
-                                    return (
-                                        <Container.Column className="col-lg-3 m-0 p-0 prodhover">
-                                            <div className="card text-white border-0 p-3">
-                                                <img src={CategoryImage} className="card-img" alt="..." height={290} width={120} />
-                                                <div className="card-img-overlay text-hide p-3">
-                                                    <Text className="fw-bolder fs-26 text-center mt-5 pt-5 text-capitalize">{item}</Text>
-                                                </div>
-                                            </div>
-                                        </Container.Column>
-                                    )
-                                })}
-                            </Container.Row>
-                        </Container.Column>
-                    </Container.Row>
+                <Container.Simple>
+                    {categories ? <ProductCategories categories={categories} /> : null}
                 </Container.Simple>
             </Layout>
         </div>
