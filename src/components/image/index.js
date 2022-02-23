@@ -11,6 +11,8 @@ export const FigureImg = styled('img', {
     backfaceVisibility: 'hidden',
     objectFit: 'cover',
     transition: 'all 0.5s',
+    height: "50%",
+    width: "100%"
 });
 export const FigureCaption = styled('figcaption', {
     fontFamily: '$serif',

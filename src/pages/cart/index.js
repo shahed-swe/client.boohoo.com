@@ -4,13 +4,14 @@ import { Layout } from '../../components/layout';
 import { Text } from "../../components/text/index"
 // images
 import { Edit2, Heart } from 'react-feather';
-import { Requests } from '../../utils/API';
+import { Requests } from '../../utils/API/index';
 import CategoryImage from "../../assets/cat.jpg"
 import { getDatabaseCart } from '../../utils/utilities';
 
 const Index = () => {
     const [categories, setCategories] = useState([])
     const [price, setPrice] = useState(0)
+    const [quantity, setQuantity] = useState(0)
     // for fetching category
     const fetchCategory = useCallback(async () => {
         try {
@@ -36,6 +37,7 @@ const Index = () => {
             price += items.price * val
             return items
         })
+        setQuantity(Object.keys(getDatabaseCart()).length)
         setPrice(price)
     }, [])
 
@@ -60,6 +62,7 @@ const Index = () => {
                                 <Text className="fs-20 m-0">FASHIONCLUB PREMIER - £12.99 | UNLIMITED NEXT DAY DELIVERY FOR A YEAR!</Text>
                             </div>
                         </Container.Column>
+                        {quantity ? <>
                         <Container.Column className="mt-2" >
                             <div style={{ backgroundColor: "#EFEFEF" }} className="ps-2 pe-2">
                                 <Container.Row >
@@ -128,8 +131,14 @@ const Index = () => {
 
                                 </Container.Row>
                             </div>
-                        </Container.Column>
+                            
+                        </Container.Column> 
+                        </> : <Container.Column>
+                                    <Text className="fs-22 fw-bolder text-center mt-5">Cart is Empty</Text>
+                            </Container.Column>}
+                        
                     </Container.Row>
+                    
 
                 </Container.Simple>
                 <Container.Simple className="mt-5">

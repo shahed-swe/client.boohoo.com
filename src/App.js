@@ -13,6 +13,7 @@ import ProductShow from './pages/products/show';
 import Cart from './pages/cart/index'
 import Login from './pages/auth/login2';
 import Register from './pages/auth/register';
+import Category from './pages/category';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/registration" component={Register} />
             <RoleBaseRoute path="/home" role="user" exact component={Home} />
+            <RoleBaseRoute path="/category/:category" role="user" exact component={Category} />
             <RoleBaseRoute path='/products' role="user" component={Product} />
             <RoleBaseRoute path="/product/:id" role="user" component={ProductShow} />
             <RoleBaseRoute path="/cart" role="user" component={Cart} />

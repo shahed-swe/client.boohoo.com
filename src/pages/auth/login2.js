@@ -9,7 +9,7 @@ import { Form, FormGroup, Input } from '../../components/form/index';
 import loginHeaderImg from '../../assets/card-danger.png';
 import { useHistory } from 'react-router-dom';
 import NavbarBase from '../../components/navbar/index';
-import { Requests } from '../../utils/API';
+import { Requests } from '../../utils/API/index';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {

@@ -29,6 +29,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { isLoggedin } from '../../utils/Authenticate';
+import {Text} from '../text/index'
 
 const NavbarBase = () => {
     const [navCollapse, setNavCollapse] = useState(false);
@@ -52,7 +53,8 @@ const NavbarBase = () => {
             <Container variant='fluid'>
                 <NavWrapper>
                     <NavbarBrand as={Link} to='/'>
-                        Fashion Club
+                        
+                        <Text className="fw-bolder mb-0">Fashion Club</Text>
                     </NavbarBrand>
                 </NavWrapper>
                 <NavbarToggler
@@ -75,7 +77,7 @@ const NavbarBase = () => {
                             }
                     }
                 >
-                    <NavbarNav css={{ ml: 'auto' }}>
+                    <NavbarNav css={{ ml: 'auto' }} className="mt-1">
                         {isLoggedin() ?
                         <>
                             <NavItemContainer>
