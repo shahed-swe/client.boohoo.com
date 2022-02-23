@@ -55,7 +55,7 @@ export const Footer = () => {
 
             <hr />
             <div className="text-center">
-                <Text className="fs-13 mb-0 pb-3 text-muted">Copyright © 2022 Boohoo. All Right Reserved</Text>
+                <Text className="fs-13 mb-0 pb-3 text-muted">Copyright © 2022 FashionClub. All Right Reserved</Text>
             </div>
         </Container.Simple>
     )

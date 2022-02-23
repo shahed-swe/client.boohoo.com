@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { Container } from '../../components/container';
 import { Layout } from '../../components/layout';
 import { Text } from '../../components/text';
@@ -7,8 +7,7 @@ import { Requests } from '../../utils/API/index';
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-    const [lat, setLat] = useState(null);
-    const [lng, setLng] = useState(null);
+
     const history = useHistory()
 
     useEffect(() => {
@@ -18,27 +17,13 @@ const Login = () => {
         }
     })
 
-    // Get user GEO location
-    const geolocation = () => {
-        if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(position => {
-                const { latitude, longitude } = position.coords
-                setLat(latitude);
-                setLng(longitude);
-            })
-        }
-    }
-
-    geolocation()
-
     const onSubmit = async(data) => {
         const formData = {
             ...data,
-            latitude: lat,
-            longitude: lng,
         }
         try {
             const response = await Requests.Authentication.Login(formData)
+            console.log(response)
             if(response.status){
                 localStorage.setItem("token", response.data.token)
                 history.push("/")
@@ -61,7 +46,7 @@ const Login = () => {
                     </Container.Column>
                     <Container.Column className="col-lg-6">
                         <div style={{ backgroundColor: "#EFEFEF" }}>
-                            <Text className="fs-14 p-2 fw-bold">NEW TO boohoo.com?</Text>
+                            <Text className="fs-14 p-2 fw-bold">NEW TO fashionclub.com?</Text>
 
                         </div>
                         <Text className="fs-12 ">
@@ -70,7 +55,8 @@ const Login = () => {
                         <div className='d-flex justify-content-end'>
                             <button
                                 type="submit"
-                                className="btn btn-primary rounded-0 ps-4 pe-4"
+                                className="btn btn-primary rounded-0 ps-4 pe-4 shadow-none"
+                                onClick={() => history.push("/registration")}
                             >
                                 CREATE ACCOUNT
                             </button>

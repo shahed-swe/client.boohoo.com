@@ -12,6 +12,7 @@ import Order from './pages/order/index';
 import ProductShow from './pages/products/show';
 import Cart from './pages/cart/index'
 import Login from './pages/auth/login';
+import Register from './pages/auth/register';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/products' component={Product} />
             <Route path="/product/:id" component={ProductShow} />
             <Route path="/login" component={Login} />
+            <Route path="/registration" component={Register} />
             <PrivateRoute>
               <Route path="/cart" component={Cart} />
               <Route path='/order' component={Order} />

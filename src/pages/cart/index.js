@@ -7,8 +7,6 @@ import { Edit2, Heart } from 'react-feather';
 
 const Index = () => {
 
-
-
     return (
         <div>
             <Layout>

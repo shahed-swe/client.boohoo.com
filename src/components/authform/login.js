@@ -15,15 +15,15 @@ const LoginForm = (props) => {
 
                 {/* E-mail */}
                 <FormGroup>
-                    {errors.email_or_phone && errors.email_or_phone.message ?
-                        <Text className="text-danger fs-13 mb-1">{errors.email_or_phone && errors.email_or_phone.message}</Text> :
+                    {errors.username && errors.username.message ?
+                        <Text className="text-danger fs-13 mb-1">{errors.username && errors.username.message}</Text> :
                         <Text className="text-capitalize fs-13 mb-1">E-mail / Phone *</Text>
                     }
 
                     <input
                         type="text"
-                        className={errors.email_or_phone ? "form-control shadow-none error rounded-0" : "form-control shadow-none rounded-0"}
-                        {...register("email_or_phone", { required: "E-mail or Phone is required" })}
+                        className={errors.username ? "form-control shadow-none error rounded-0" : "form-control shadow-none rounded-0"}
+                        {...register("username", { required: "E-mail or Phone is required" })}
                     />
                 </FormGroup>
 
@@ -71,9 +71,9 @@ const LoginForm = (props) => {
                 <div className='d-flex justify-content-end'>
                     <button
                         type="submit"
-                        className="btn btn-primary rounded-0 ps-4 pe-4"
+                        className="btn btn-primary rounded-0 ps-4 pe-4 shadow-none"
                     >
-                        LOG IN SECURELY
+                        LOG IN
                     </button>
                 </div>
 
