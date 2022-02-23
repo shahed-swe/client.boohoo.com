@@ -109,7 +109,7 @@ const ProductShow = () => {
             {loading ? <Loader /> :
                 <Layout>
 
-                    <Container.Simple className="mt-2">
+                    <Container.Simple>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">Home</li>

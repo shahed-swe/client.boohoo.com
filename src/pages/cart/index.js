@@ -49,7 +49,7 @@ const Index = () => {
     return (
         <div>
             <Layout>
-                <Container.Simple className="mt-2">
+                <Container.Simple>
                     <Container.Row>
                         <Container.Column>
                             <div className='d-flex justify-content-between'>
