@@ -1,14 +1,25 @@
-import jwt_decode from "jwt-decode"
+// import jwtDecode from 'jwt-decode'
 
-export const isAuthenticate = () => {
-    const token = localStorage.getItem("token")
-    if (token) {
-        const user = jwt_decode(token)
-        console.log(user)
-        if (user) {
+export const isLoggedin = (requestedRole) => {
+    try {
+        const token = localStorage.getItem("token")
+        if (token) {
+            // let segments = token.split('.')
+            // atob(segments[0])
+            // let newtoken = jwtDecode(token)
+            // if (!newtoken || newtoken.exp * 1000 < Date.now() - (60 * 1000)) {
+            //     localStorage.removeItem("token")
+            //     return false
+            // }
+            // else {
+            //     return true
+            // }
             return true
-        } else {
-            return false
         }
+        return false
+    } catch (err) {
+        localStorage.removeItem("token")
+        return false;
     }
-}
+
+};

@@ -37,7 +37,7 @@ const Login = () => {
     return (
         <Layout>
             <Container.Simple>
-                <Container.Row >
+                <Container.Row>
                     <Text className="fs-26 fw-bolder">My Account Log In</Text>
                     <Container.Column className="col-lg-6">
                         <div style={{ backgroundColor: "#EFEFEF" }}>
@@ -45,7 +45,7 @@ const Login = () => {
                         </div>
                         <LoginForm onSubmit={onSubmit} />
                     </Container.Column>
-                    <Container.Column className="col-lg-6">
+                    {/* <Container.Column className="col-lg-6">
                         <div style={{ backgroundColor: "#EFEFEF" }}>
                             <Text className="fs-14 p-2 fw-bold">NEW TO fashionclub.com?</Text>
 
@@ -63,7 +63,7 @@ const Login = () => {
                             </button>
                         </div>
 
-                    </Container.Column>
+                    </Container.Column> */}
                 </Container.Row>
             </Container.Simple>
         </Layout>

@@ -27,9 +27,12 @@ import {
     DropdownMenuTrigger,
 } from '../dropdown/index';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { isLoggedin } from '../../utils/Authenticate';
 
 const NavbarBase = () => {
     const [navCollapse, setNavCollapse] = useState(false);
+    const history = useHistory()
 
     useEffect(() => {
         window.addEventListener('resize', updateCollapse);
@@ -41,6 +44,8 @@ const NavbarBase = () => {
     const updateCollapse = () => {
         window.innerWidth < 993 && navCollapse ? setNavCollapse(true) : setNavCollapse(false);
     };
+
+    console.log(isLoggedin())
 
     return (
         <Navbar variant={navCollapse ? 'white' : 'transparent'} expand='lg'>
@@ -71,7 +76,7 @@ const NavbarBase = () => {
                     }
                 >
                     <NavbarNav css={{ ml: 'auto' }}>
-
+                        {isLoggedin() ?
                         <>
                             <NavItemContainer>
                                 <DropdownMenu>
@@ -126,11 +131,11 @@ const NavbarBase = () => {
                                     <NavItemText>Beauty</NavItemText>
                                 </NavItem>
                             </NavItemContainer>
-                        </>
+                        </> :null}
 
                     </NavbarNav>
                     <NavbarNav css={{ ml: 'auto' }}>
-                        
+                        {isLoggedin() ? 
                             <>
                                 <NavItemContainer css={{ px: '1rem', borderRight: '1px solid $gray400' }}>
                                     <NavItem>
@@ -138,7 +143,7 @@ const NavbarBase = () => {
                                     </NavItem>
                                 </NavItemContainer>
                                 <NavItemContainer css={{ px: '1rem', borderRight: '1px solid $gray400' }}>
-                                    <NavItem onClick={() => localStorage.removeItem('token')}>
+                                    <NavItem onClick={() => {localStorage.removeItem('token');history.push("/")}}>
                                         <NavItemIcon as={HiOutlineUser} />
                                     </NavItem>
                                 </NavItemContainer>
@@ -153,7 +158,7 @@ const NavbarBase = () => {
                                     </NavItem>
                                 </NavItemContainer>
                             </>
-                        
+                        : null}
                     </NavbarNav>
                 </NavbarCollapse>
             </Container>

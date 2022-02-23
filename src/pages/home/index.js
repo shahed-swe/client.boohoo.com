@@ -7,6 +7,8 @@ import { Single } from '../../components/product/single';
 import { Requests } from "../../utils/API/index"
 import { Loader } from '../../components/loading';
 import { addToDatabaseCart } from '../../utils/utilities';
+import { Text } from '../../components/text'; 
+import { ProductItem } from '../../components/product/item';
 
 const Index = () => {
     const [productshow, setProductShow] = useState({ value: null, show: false })
@@ -22,12 +24,12 @@ const Index = () => {
                 setLoading(false)
             }
         } catch (error) {
-            if(error){
+            if (error) {
                 console.log(error)
             }
             setLoading(false)
         }
-        
+
     }, [])
 
     // fetch product
@@ -59,27 +61,40 @@ const Index = () => {
 
     return (
         <div>
-            {loading ? <Loader/> : 
-            <Layout>
-                <Container.Simple>
-                    <Container.Row>
+            {loading ? <Loader /> :
+                <Layout>
+                    <Container.Simple>
+                        <div className="d-flex justify-content-between">
+                            <Text className="fs-22 fw-bolder">All Products</Text>
+                            <button className="bag ps-3 pe-3 pt-1 pb-1">View all</button>
+                        </div>
                         {data && data.map((item, index) => {
                             return (
-                                <Product setProductShow={setProductShow} item={item} key={index} />
+                                <ProductItem item={item} key={index} />
                             )
                         })}
-                    </Container.Row>
+                    </Container.Simple>
+                    {/*  */}
+                    <Container.Simple>
+                        <Text className="fs-22 fw-bolder">Featured Items</Text>
+                        <Container.Row>
+                            {data && data.slice(4,8).map((item, index) => {
+                                return (
+                                    <Product setProductShow={setProductShow} item={item} key={index} />
+                                )
+                            })}
+                        </Container.Row>
 
-                </Container.Simple>
-            </Layout>}
-            {productshow.value && productshow.show ? 
-            <PrimaryModal
-                size="xl"
-                show={productshow.show}
-                onHide={() => setProductShow({ show: !productshow.show })}
-            >
-                <Single handleBusket={handleBusket} product={productshow.value}/>
-            </PrimaryModal> : null}
+                    </Container.Simple>
+                </Layout>}
+            {productshow.value && productshow.show ?
+                <PrimaryModal
+                    size="xl"
+                    show={productshow.show}
+                    onHide={() => setProductShow({ show: !productshow.show })}
+                >
+                    <Single handleBusket={handleBusket} product={productshow.value} />
+                </PrimaryModal> : null}
         </div>
     );
 };

@@ -1,27 +1,27 @@
 
-import React from 'react'
-import { isAuthenticate } from '../../utils/Authenticate'
 import { Route, Redirect } from 'react-router-dom'
+import { isLoggedin } from '../../utils/Authenticate'
 
-const PrivateRoute = ({ props, children, ...rest }) => {
-    const loggedIn = isAuthenticate()
-
+const RoleBasedRouting = ({ component: Component, role, ...rest }) => {
     return (
-        <Route
-            {...rest}
-            render={({ location }) =>
-                loggedIn ?
-                    children
-                    :
-                    <Redirect
-                        to={{
-                            pathname: "/home",
-                            from: location
-                        }}
-                    />
+        <>
+            {isLoggedin(role) && (
+                <Route
+                    {...rest}
+                    render={(props) => (
+                        <>
+                            <Component {...props} />
+                        </>
+                    )}
+                />
+            )}
+            {
+                !isLoggedin(role) && (
+                    <Redirect to={{ pathname: "/" }} />
+                )
             }
-        />
-    )
+        </>
+    );
 }
 
-export default PrivateRoute;
+export default RoleBasedRouting;
