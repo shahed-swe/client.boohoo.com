@@ -1,130 +1,164 @@
-import { useState } from "react"
-import { Heart, Search, ShoppingBag, User, Award, ChevronRight, Menu, PenTool, Printer, Scissors, Unlock } from "react-feather"
-import { Text } from "../text"
-import { Container } from '../container'
-import { GrayButton } from "../button"
-import { Link } from "react-router-dom"
-import { NavDropdown } from 'react-bootstrap'
-import { useHistory } from "react-router-dom"
-import { Drawer } from "../drawer"
-import "./style.scss"
-// Base navbar
-export const NavbarBase = () => {
-    const [show, setShow] = useState(false)
-    const token = localStorage.getItem("token")
-    const history = useHistory()
+import React, { useEffect, useState } from 'react';
+import {
+    HiOutlineDotsVertical,
+    HiOutlineSearch,
+    HiOutlineUser,
+} from 'react-icons/hi/index';
+import { IoHeartOutline, IoBagOutline } from 'react-icons/io5/index';
+import {
+    NavItem,
+    Navbar,
+    NavbarBrand,
+    NavbarCollapse,
+    NavbarNav,
+    NavbarToggler,
+    NavWrapper,
+    NavItemIcon,
+    NavItemText,
+    NavItemContainer,
+} from './extra';
+import { Container } from '../container/extra';
+import {
+    DropdownMenu,
+    DropdownCaret,
+    DropdownMenuArrow,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '../dropdown/index';
+import { Link } from 'react-router-dom';
+
+const NavbarBase = () => {
+    const [navCollapse, setNavCollapse] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('resize', updateCollapse);
+        return function cleanup() {
+            window.removeEventListener('resize', updateCollapse);
+        };
+    });
+
+    const updateCollapse = () => {
+        window.innerWidth < 993 && navCollapse ? setNavCollapse(true) : setNavCollapse(false);
+    };
 
     return (
-        <div className="base-navbar shadow-sm px-lg-5">
-            <Container.Simple>
-                <Container.Row>
-                    <Container.Column>
-                        <div className="d-flex">
+        <Navbar variant={navCollapse ? 'white' : 'transparent'} expand='lg'>
+            <Container variant='fluid'>
+                <NavWrapper>
+                    <NavbarBrand as={Link} to='/'>
+                        Fashion Club
+                    </NavbarBrand>
+                </NavWrapper>
+                <NavbarToggler
+                    data-toggle='collapse'
+                    data-target='#authNav'
+                    aria-expanded={navCollapse ? 'true' : 'false'}
+                    aria-label='Toggle navigation'
+                    onClick={(e) => setNavCollapse(!navCollapse)}
+                >
+                    <HiOutlineDotsVertical />
+                </NavbarToggler>
+                <NavbarCollapse
+                    css={
+                        navCollapse
+                            ? { opacity: 1, maxHeight: '100vh' }
+                            : {
+                                maxHeight: '0',
+                                opacity: 0,
+                                '@lg': { maxHeight: 'unset', opacity: 'unset' },
+                            }
+                    }
+                >
+                    <NavbarNav css={{ ml: 'auto' }}>
 
-                            {/* Logo container */}
-                            <div className="pt-2">
-                                <Link to={"/"} className="text-decoration-none">
-                                    <div className="text-decoration-none">
-                                        <Text className="fs-22 text-dark ">FASHIONCLUB</Text>
-                                    </div>
-                                </Link>
-                            </div>
+                        <>
+                            <NavItemContainer>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <NavItem css={{ my: '$1' }}>
+                                            <NavItemText>Men</NavItemText>
+                                            <DropdownCaret css={{ ml: 5 }} />
+                                        </NavItem>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuItem>Item 1</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 2</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 3</DropdownMenuItem>
+                                        <DropdownMenuArrow />
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </NavItemContainer>
+                            <NavItemContainer>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <NavItem css={{ my: '$1' }}>
+                                            <NavItemText>Women</NavItemText>
+                                            <DropdownCaret css={{ ml: 5 }} />
+                                        </NavItem>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuItem>Item 1</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 2</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 3</DropdownMenuItem>
+                                        <DropdownMenuArrow />
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </NavItemContainer>
+                            <NavItemContainer>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <NavItem css={{ my: '$1' }}>
+                                            <NavItemText>Kids</NavItemText>
+                                            <DropdownCaret css={{ ml: 5 }} />
+                                        </NavItem>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuItem>Item 1</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 2</DropdownMenuItem>
+                                        <DropdownMenuItem>Item 3</DropdownMenuItem>
+                                        <DropdownMenuArrow />
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </NavItemContainer>
+                            <NavItemContainer>
+                                <NavItem>
+                                    <NavItemText>Beauty</NavItemText>
+                                </NavItem>
+                            </NavItemContainer>
+                        </>
 
-                            {/* Others elements */}
-                            <div className="elements-container flex-fill d-none d-xl-block p-2">
-                                <div className="d-flex justify-content-end">
-                                    <div className="text-center me-4 pt-2 side-border">
-                                        <Link to="#" className="text-decoration-none">
-                                            <Search size={22} color="black" />
-                                        </Link>
-                                    </div>
-                                    <div className="text-center me-4 side-border">
-                                        <NavDropdown title={<User size={22} color="black" />} id="navbarScrollingDropdown">
-                                            {token ? <NavDropdown.Item onClick={() => {localStorage.removeItem("token"); history.push("/login")}}>logout</NavDropdown.Item> : <NavDropdown.Item href="/login">Login</NavDropdown.Item>}
-                                        </NavDropdown>
-                                    </div>
+                    </NavbarNav>
+                    <NavbarNav css={{ ml: 'auto' }}>
+                        
+                            <>
+                                <NavItemContainer css={{ px: '1rem', borderRight: '1px solid $gray400' }}>
+                                    <NavItem>
+                                        <NavItemIcon as={HiOutlineSearch} />
+                                    </NavItem>
+                                </NavItemContainer>
+                                <NavItemContainer css={{ px: '1rem', borderRight: '1px solid $gray400' }}>
+                                    <NavItem onClick={() => localStorage.removeItem('token')}>
+                                        <NavItemIcon as={HiOutlineUser} />
+                                    </NavItem>
+                                </NavItemContainer>
+                                <NavItemContainer css={{ px: '1rem', borderRight: '1px solid $gray400' }}>
+                                    <NavItem>
+                                        <NavItemIcon as={IoHeartOutline} />
+                                    </NavItem>
+                                </NavItemContainer>
+                                <NavItemContainer css={{ px: '1rem' }}>
+                                    <NavItem>
+                                        <NavItemIcon as={IoBagOutline} />
+                                    </NavItem>
+                                </NavItemContainer>
+                            </>
+                        
+                    </NavbarNav>
+                </NavbarCollapse>
+            </Container>
+        </Navbar>
+    );
+};
 
-                                    <div className="text-center me-4 pt-2 side-border">
-                                        <Link to="#" className="text-decoration-none">
-                                            <Heart size={22} color="black" />
-                                        </Link>
-                                    </div>
-                                    
-                                    <div className="text-center me-4 pt-2 ">
-                                        <Link to="/cart" className="text-decoration-none">
-                                            <ShoppingBag size={22} color="black" />
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Menu button */}
-                            <div className="elements-container d-xl-none ms-auto">
-                                <GrayButton className="btn-circle" onClick={() => setShow(!show)}>
-                                    <Menu className="text-dark" size={20} />
-                                </GrayButton>
-                            </div>
-                        </div>
-                    </Container.Column>
-                </Container.Row>
-            </Container.Simple>
-            {/* Mobile drawer */}
-            <Drawer
-                show={show}
-                width={280}
-                placement="start"
-                onHide={() => setShow(false)}
-            >
-                <div className="drawer-container">
-
-                    <Link to={"/cart"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
-                        <div className="d-flex">
-                            <div className="pt-1 pe-3">
-                                <ShoppingBag size={20} className="text-muted" />
-                            </div>
-                            <div>
-                                <Text className="text-dark fw-bold fs-13 mb-0">Cart</Text>
-                                <Text className="text-muted fw-thin fs-12 mb-0">See What You Got</Text>
-                            </div>
-                            <div className="ms-auto pt-10">
-                                <ChevronRight className="text-dark float-end" size={16} />
-                            </div>
-                        </div>
-                    </Link>
-
-
-                    <Link to={"/login"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
-                        <div className="d-flex">
-                            <div className="pt-1 pe-3">
-                                <Unlock size={20} className="text-muted" />
-                            </div>
-                            <div>
-                                <Text className="text-dark fw-bold fs-13 mb-0">Login</Text>
-                                <Text className="text-muted fw-thin fs-12 mb-0">Access your account</Text>
-                            </div>
-                            <div className="ms-auto pt-10">
-                                <ChevronRight className="text-dark float-end" size={16} />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={"/registration"} className="btn shadow-none w-100 text-start border-bottom rounded-0 py-10">
-                        <div className="d-flex">
-                            <div className="pt-1 pe-3">
-                                <User size={20} className="text-muted" />
-                            </div>
-                            <div>
-                                <Text className="text-dark fw-bold fs-13 mb-0">Signup</Text>
-                                <Text className="text-muted fw-thin fs-12 mb-0">Create an account</Text>
-                            </div>
-                            <div className="ms-auto pt-10">
-                                <ChevronRight className="text-dark float-end" size={16} />
-                            </div>
-                        </div>
-                    </Link>
-                </div>
-            </Drawer>
-        </div>
-    )
-}
-
+export default NavbarBase;

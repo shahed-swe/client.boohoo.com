@@ -3,7 +3,6 @@ import { Container } from '../../components/container';
 import { Layout } from '../../components/layout';
 import { Text } from "../../components/text/index"
 // images
-import ImageFirst from '../../assets/take1.jpg'
 import { Edit2, Heart } from 'react-feather';
 import { Requests } from '../../utils/API';
 import CategoryImage from "../../assets/cat.jpg"
@@ -12,7 +11,6 @@ import { getDatabaseCart } from '../../utils/utilities';
 const Index = () => {
     const [categories, setCategories] = useState([])
     const [price, setPrice] = useState(0)
-    const [cartlen, setCartlen] = useState(0)
     // for fetching category
     const fetchCategory = useCallback(async () => {
         try {
@@ -36,9 +34,9 @@ const Index = () => {
             const items = JSON.parse(key)
             const val = Object.values(getDatabaseCart())[index]
             price += items.price * val
+            return items
         })
         setPrice(price)
-        setCartlen(Object.keys(getDatabaseCart()).length)
     }, [])
 
     // price calculation

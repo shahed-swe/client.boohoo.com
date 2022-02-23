@@ -13,7 +13,7 @@ const Login = () => {
     useEffect(() => {
         const token = localStorage.getItem("token")
         if(token){
-            history.push("/")
+            history.push("/home")
         }
     })
 
@@ -26,7 +26,7 @@ const Login = () => {
             console.log(response)
             if(response.status){
                 localStorage.setItem("token", response.data.token)
-                history.push("/")
+                history.push("/home")
             }
         } catch (error) {
             

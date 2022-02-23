@@ -20,13 +20,13 @@ function App() {
       <Router>
         <ScrollToTop>
           <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path='/products' component={Product} />
-            <Route path="/product/:id" component={ProductShow} />
-            <Route path="/login" component={Login} />
+            <Route path="/" component={Login} />
             <Route path="/registration" component={Register} />
-            <Route path="/cart" component={Cart} />
             <PrivateRoute>
+              <Route path='/home' exact component={Home} />
+              <Route path='/products' component={Product} />
+              <Route path="/product/:id" component={ProductShow} />
+              <Route path="/cart" component={Cart} />
               <Route path='/order' component={Order} />
             </PrivateRoute>
             <Route path="*" component={() => {
