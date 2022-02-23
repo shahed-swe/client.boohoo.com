@@ -23,6 +23,7 @@ const LoginForm = (props) => {
                     <input
                         type="text"
                         className={errors.username ? "form-control shadow-none error rounded-0" : "form-control shadow-none rounded-0"}
+                        defaultValue={"johnd"}
                         {...register("username", { required: "E-mail or Phone is required" })}
                     />
                 </FormGroup>
@@ -37,6 +38,7 @@ const LoginForm = (props) => {
                     <div style={{ position: "relative" }}>
                         <input
                             type={show ? "text " : "password"}
+                            defaultValue={"m38rmF$"}
                             className={errors.password ? "form-control shadow-none error rounded-0" : "form-control shadow-none rounded-0"}
                             {...register("password", { required: "Password is required" })}
                         />

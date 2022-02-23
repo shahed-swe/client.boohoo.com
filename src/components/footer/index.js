@@ -4,7 +4,7 @@ import { Container } from "../container"
 
 export const Footer = () => {
     return (
-        <Container.Simple className="footer">
+        <Container.Simple className="footer top-margin-first" >
 
             <Container.Row className="py-4">
                 <Container.Column className="col-lg-4 col-md-6">

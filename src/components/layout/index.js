@@ -7,10 +7,10 @@ export const Layout = (props) => {
         <div className="layout-section">
             <NavbarBase />
 
-            <main className="top-margin">
+            <main className="top-margin-first">
                 {props.children}
             </main>
-            <Footer />
+            <Footer classNam="top-margin-first"/>
         </div>
     )
 }

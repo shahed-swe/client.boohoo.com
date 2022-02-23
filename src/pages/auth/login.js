@@ -12,10 +12,11 @@ const Login = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token")
+        console.log(token)
         if(token){
             history.push("/home")
         }
-    })
+    },[history])
 
     const onSubmit = async(data) => {
         const formData = {
@@ -36,7 +37,7 @@ const Login = () => {
     return (
         <Layout>
             <Container.Simple>
-                <Container.Row>
+                <Container.Row >
                     <Text className="fs-26 fw-bolder">My Account Log In</Text>
                     <Container.Column className="col-lg-6">
                         <div style={{ backgroundColor: "#EFEFEF" }}>

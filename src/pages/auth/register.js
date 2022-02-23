@@ -14,7 +14,7 @@ const Login = () => {
         if (token) {
             history.push("/")
         }
-    })
+    }, [history])
 
     const onSubmit = async (data) => {
         console.log(data)
